@@ -1,5 +1,6 @@
 body {
 	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	max-width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -13,3 +14,4 @@ body {
 #about-window {
 	display: none;
 }
+
