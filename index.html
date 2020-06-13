@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
 
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+	<link type="text/css" rel="stylesheet" href="assets/css/98ui.css" />
     <link type="text/css" rel="stylesheet" href="assets/css/style.css" />
 
     <meta property="og:title" content="Email Sign-off Generator">
@@ -19,23 +20,53 @@
 	<meta property="og:site_name" content="Email Sign-off Generator">
 	<meta name="twitter:image:alt" content="A project by Madison Monteze.">
 
-
 </head>
 <body>
 
-	<div class="top grid bold">
-		<h1 class="title full-area">Email Sign-off Generator</h1>
-		<p class="full-area">For 100+ ways to tell someone goodbye</p>
-	  </div>
-	  
-	  <div class="middle grid regular">
-		<button class="search-input full-area">Click Me</button>
-		<div class="signoff grid full-area"></div>
-	  </div>
-	  
-	  <div class="indicators grid medium">
-		<a class="credits full-area">Site credits</a>
-	  </div>
+	<div class="window main">
+		<div class="title-bar">
+			<div class="title-bar-text">Email Sign-off Generator</div>
+			<div class="title-bar-controls">
+			  <button onclick="showAbout()" aria-label="Help"></button>
+			  <button onclick="closeAbout()" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="window-body">
+			<div id="generator-window">
+		  		<p id="signoff">Click OK to generate a sign-off.</p>
+		  		<section class="field-row" style="justify-content: flex-end">
+					<button onclick="generateSignoff()">OK</button>
+				</section>
+			</div>
+			<div id="about-window">
+				<ul class="tree-view">
+					<li>About</li>
+					<li>Made by Madison Monteze</li>
+						<ul>
+							<li><a href="https://twitter.com/madisonmonteze" target="_blank">Twitter</a></li>
+							<li><a href="https://github.com/madisonmonteze" target="_blank">Github</a></li>
+							<li><a id="myEmail" href="madisonmonteze@gmail.com" onclick="copyEmail()">madisonmonteze@gmail.com</a> (click to copy)</li>
+					  </ul>
+					<li>
+					  Tech Stack
+					  <ul>
+						<li>CSS</li>
+						<li>Javascript</li>
+					  </ul>
+					</li>
+					<li>
+						Credits
+						<ul>
+						  <li>Email Sign-offs sourced from Meg Miller and Hannah Badwan's Are.na channel "Good Sign-offs" <a href="https://www.are.na/meg-miller/good-sign-offs" target="_blank">[source]</a></li>
+						  <li>'98 Windows UI CSS created by Jordan Scales <a href="https://github.com/jdan/98.css" target="_blank">[source]</a></li>
+						</ul>
+					  </li>
+				  </ul>
+			</div>
+		</div>
+	</div>
+
+<script src="assets/js/generator.js"></script>
 
 
 </body>
