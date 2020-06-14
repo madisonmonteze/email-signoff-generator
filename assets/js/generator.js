@@ -1,3 +1,20 @@
+// variables
+
+// variables for buttons within main window
+var aboutWindow = document.getElementById("about-window");
+var signoffWindow = document.getElementById("generator-window");
+var aboutButton = document.getElementById("about-button");
+var closeButton = document.getElementById("close-button");
+var copyButton = document.getElementById("copy-content");
+
+// variables for switching between screens
+var mainScreen = document.getElementById("main");
+var restartScreen = document.getElementById("restart");
+
+// original sign-off message
+var restoreDirections = document.getElementById("signoff");
+
+
 // function to randomly select a sign-off from the list on click
 function generateSignoff() {
     
@@ -87,19 +104,71 @@ function generateSignoff() {
 
     // show sign-off in html window
     document.getElementById("signoff").innerHTML = selectedSignoff;
+
+    //display copy button
+    copyButton.style.display = 'block';
+
+    // copy signoff
+    // based on https://github.com/kuldar/kuldar-2020/blob/master/js/site.js
+    const copySignoffButton = document.getElementById('copy-content')
+
+    // Copy signoff to clipboard
+    copySignoffButton.onclick = e => {
+      e.preventDefault()
+      copyToClipboard(selectedSignoff)
+      e.target.classList.add('is-copied')
+      setTimeout(() => { e.target.classList.remove('is-copied') }, 1000)
+    }
+  
+    // Copy-paste straight from the internet
+    const copyToClipboard = str => {
+      const el = document.createElement('textarea')  // Create a <textarea> element
+      el.value = str                                 // Set its value to the string that you want copied
+      el.setAttribute('readonly', '')                // Make it readonly to be tamper-proof
+      el.style.position = 'absolute'
+      el.style.left = '-9999px'                      // Move outside the screen to make it invisible
+      document.body.appendChild(el)                  // Append the <textarea> element to the HTML document
+      const selected =
+        document.getSelection().rangeCount > 0        // Check if there is any content selected previously
+          ? document.getSelection().getRangeAt(0)     // Store selection if found
+          : false                                    // Mark as false to know no selection existed before
+      el.select()                                    // Select the <textarea> content
+      document.execCommand('copy')                   // Copy - only works as a result of a user action (e.g. click events)
+      document.body.removeChild(el)                  // Remove the <textarea> element
+      if (selected) {                                 // If a selection existed before copying
+        document.getSelection().removeAllRanges()    // Unselect everything on the HTML document
+        document.getSelection().addRange(selected)   // Restore the original selection
+      }
+    }
 }
 
-var aboutWindow = document.getElementById("about-window");
-var signoffWindow = document.getElementById("generator-window");
 
 function showAbout () {
     aboutWindow.style.display = 'block';
     signoffWindow.style.display = 'none';
+    aboutButton.style.display = 'none';
+    closeButton.style.display = 'block';
 }
 
 function closeAbout () {
     aboutWindow.style.display = 'none';
     signoffWindow.style.display = 'block';
+    closeButton.style.display = 'none';
+    aboutButton.style.display = 'block';
+    restoreDirections.innerHTML = 'Click OK to generate a sign-off.';
+    copyButton.style.display = 'none';
+}
+
+function showRestart () {
+    mainScreen.style.display = 'none';
+    restartScreen.style.display = 'flex';
+}
+
+function showMain () {
+    restartScreen.style.display = 'none';
+    mainScreen.style.display = 'block';
+    restoreDirections.innerHTML = 'Click OK to generate a sign-off.';
+    copyButton.style.display = 'none';
 }
 
 // click to copy from: https://github.com/kuldar/kuldar-2020/blob/master/js/site.js

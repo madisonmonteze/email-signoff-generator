@@ -23,29 +23,31 @@
 </head>
 <body>
 
-	<div class="window main">
+	<div class="window main" id="main">
 		<div class="title-bar">
 			<div class="title-bar-text">Email Sign-off Generator</div>
 			<div class="title-bar-controls">
-			  <button onclick="showAbout()" aria-label="Help"></button>
-			  <button onclick="closeAbout()" aria-label="Close"></button>
+				<button onclick="showRestart()" aria-label="Minimize"></button>
+				<button id="about-button" onclick="showAbout()" aria-label="Help"></button>
+			  	<button id="close-button" onclick="closeAbout()" aria-label="Close"></button>
 			</div>
 		</div>
 		<div class="window-body">
 			<div id="generator-window">
-		  		<p id="signoff">Click OK to generate a sign-off.</p>
+		  		<p class="signoff" id="signoff">Click OK to generate a sign-off.</p>
 		  		<section class="field-row" style="justify-content: flex-end">
 					<button onclick="generateSignoff()">OK</button>
+					<button onclick="copySignoffButton()" id="copy-content">Copy</button>
 				</section>
 			</div>
-			<div id="about-window">
+			<div class="about" id="about-window">
 				<ul class="tree-view">
 					<li>About</li>
 					<li>Made by Madison Monteze</li>
-						<ul>
+						<ul class="my-info">
 							<li><a href="https://twitter.com/madisonmonteze" target="_blank">Twitter</a></li>
 							<li><a href="https://github.com/madisonmonteze" target="_blank">Github</a></li>
-							<li><a id="myEmail" href="madisonmonteze@gmail.com" onclick="copyEmail()">madisonmonteze@gmail.com</a> (click to copy)</li>
+							<li><a id="myEmail" href="madisonmonteze@gmail.com" onclick="copyEmail()" class>madisonmonteze@gmail.com</a> [click to copy]</li>
 					  </ul>
 					<li>
 					  Tech Stack
@@ -57,13 +59,19 @@
 					<li>
 						Credits
 						<ul>
-						  <li>Email Sign-offs sourced from Meg Miller and Hannah Badwan's Are.na channel "Good Sign-offs" <a href="https://www.are.na/meg-miller/good-sign-offs" target="_blank">[source]</a></li>
-						  <li>'98 Windows UI CSS created by Jordan Scales <a href="https://github.com/jdan/98.css" target="_blank">[source]</a></li>
+						  <li>Email sign-offs sourced from Meg Miller and Hannah Badwan's Are.na channel "Good Sign-offs" [<a href="https://www.are.na/meg-miller/good-sign-offs" target="_blank">link</a>]</li>
+						  <li>'98 Windows UI CSS created by Jordan Scales [<a href="https://github.com/jdan/98.css" target="_blank">link</a>]</li>
+						  <li>'Copy to Clipboard' functionality based on Kuldar Kalvik's JS [<a href="https://github.com/kuldar/kuldar-2020/blob/master/js/site.js" target="_blank">link</a>]</li>
 						</ul>
 					  </li>
 				  </ul>
 			</div>
 		</div>
+	</div>
+	<div id="restart" class="restart-screen">
+		<h1>It&#8217;s now safe to turn off your computer.</h1>
+
+		<button onclick="showMain()">Restore</button>
 	</div>
 
 <script src="assets/js/generator.js"></script>
